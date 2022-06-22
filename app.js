@@ -2,10 +2,8 @@ const express = require('express');
 const app = express();
 app.use(express.static('public'));
 
-
-app.listen(3000, ()=>{
-    console.log('Servidor funcionando en Localhost:3000');
-});
+const PORT = process.env.PORT || 4000;
+const HOST = process.env.HOST || 'localhost';
 
 app.get('/', (req,res)=>{
     res.sendFile(__dirname + '/views/home.html');
@@ -17,4 +15,8 @@ app.get('/register', (req,res)=>{
 
 app.get('/login', (req,res)=>{
     res.sendFile(__dirname + '/views/login.html');
+});
+
+app.listen(PORT, ()=>{
+    console.log(`Servidor funcionando en http://${HOST}:${PORT}/`);
 });
